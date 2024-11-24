@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "VRGestures",
+	"Description": "Unreal engine plugin for basic VR headset gestures like nod yes, no etc.",
+	"Category": "Other",
+	"CreatedBy": "PsykoloGG",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "VRGestures",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
