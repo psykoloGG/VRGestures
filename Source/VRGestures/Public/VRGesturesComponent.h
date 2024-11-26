@@ -4,7 +4,9 @@
 #include "Components/ActorComponent.h"
 #include "VRGesturesComponent.generated.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LogVRGestures, Warning, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogVRGestures, All, All);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNodYes);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class VRGESTURES_API UVRGesturesComponent : public UActorComponent
@@ -20,13 +22,16 @@ public:
 	bool bNodYesEnabled = true;
 
 	UPROPERTY(EditAnywhere, Category = "Gestures|Nod Yes")
-	float NodYesPitchThreshold = 0.5f;
+	float NodYesPitchThreshold = -3.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Gestures|Nod Yes")
-	float NodYesTimeThreshold = 0.5f;
+	float NodYesCooldownTime = 0.5f;
 
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* VRCamera;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnNodYes OnNodYes;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -34,5 +39,11 @@ protected:
 private:
 	void CheckForNodYes(float DeltaTime, const FRotator& CurrentRotation);
 
+	void ResetGestureState(bool& bGestureActive, float& GestureTime);
+	
 	FRotator PreviousRotation;
+
+	// Move into struct
+	bool bIsNodding = false;
+	float NodYesTime = 0.0f;
 };
