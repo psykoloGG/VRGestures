@@ -28,7 +28,7 @@ void UVRGesturesComponent::CheckForNodYes(float DeltaTime, const FRotator& Curre
 	// but for now this also works by just moving head down quickly (thus the check for pitch < -3.0f)
 	// TODO: Needs check for a head up movement after head down movement to confirm nod gesture 
 	float DeltaYaw = CurrentRotation.Pitch - PreviousRotation.Pitch;
-	if (DeltaYaw < NodYesPitchThreshold && CurrentRotation.Pitch < -3.0f && !bIsNodding && DeltaYaw < 0.0f)
+	if (DeltaYaw < NodYesPitchThreshold && CurrentRotation.Pitch < -4.0f && !bIsNodding && DeltaYaw < 0.0f)
 	{
 		bIsNodding = true;
 		OnNodYes.Broadcast();
